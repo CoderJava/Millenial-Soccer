@@ -34,51 +34,54 @@ class _NewsScreenState extends State<NewsScreen> {
           child: Text("News"),
         ),
       ),
-      body: FutureBuilder(
-        future: _newsBloc.getNews(strDateFrom),
-        builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
-          if (snapshot.hasData) {
-            NewsResponse newsResponse = snapshot.data;
-            List<ItemArticleNews> listArticles = newsResponse.listArticles;
-            return ListView.separated(
-              itemCount: listArticles.length,
-              separatorBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    left: 16.0,
-                    top: 4.0,
-                    right: 16.0,
-                    bottom: 4.0,
-                  ),
-                  child: Divider(color: Colors.grey),
-                );
-              },
-              itemBuilder: (context, index) {
-                ItemArticleNews itemArticleNews = listArticles[index];
-                String title = itemArticleNews.title;
-                String description = itemArticleNews.description;
-                String urlImage =
-                    itemArticleNews.urlToImage ?? pathImageNotFound;
-                String source = itemArticleNews.source.name ?? "N/A";
-                String url = itemArticleNews.url;
-                if (index == 0) {
-                  return _buildWidgetHeadlineNews(
-                      urlImage, mediaQuery, title, context, source, url);
-                } else {
-                  return _buildWidgetItemNews(url, context, urlImage,
-                      mediaQuery, title, description, source);
-                }
-              },
-            );
-          } else if (snapshot.hasError) {
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 16.0),
+        child: FutureBuilder(
+          future: _newsBloc.getNews(strDateFrom),
+          builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
+            if (snapshot.hasData) {
+              NewsResponse newsResponse = snapshot.data;
+              List<ItemArticleNews> listArticles = newsResponse.listArticles;
+              return ListView.separated(
+                itemCount: listArticles.length,
+                separatorBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16.0,
+                      top: 4.0,
+                      right: 16.0,
+                      bottom: 4.0,
+                    ),
+                    child: Divider(color: Colors.grey),
+                  );
+                },
+                itemBuilder: (context, index) {
+                  ItemArticleNews itemArticleNews = listArticles[index];
+                  String title = itemArticleNews.title;
+                  String description = itemArticleNews.description;
+                  String urlImage =
+                      itemArticleNews.urlToImage ?? pathImageNotFound;
+                  String source = itemArticleNews.source.name ?? "N/A";
+                  String url = itemArticleNews.url;
+                  if (index == 0) {
+                    return _buildWidgetHeadlineNews(
+                        urlImage, mediaQuery, title, context, source, url);
+                  } else {
+                    return _buildWidgetItemNews(url, context, urlImage,
+                        mediaQuery, title, description, source);
+                  }
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text("Error: ${snapshot.error.toString()}"),
+              );
+            }
             return Center(
-              child: Text("Error: ${snapshot.error.toString()}"),
+              child: buildCircularProgressIndicator(),
             );
-          }
-          return Center(
-            child: buildCircularProgressIndicator(),
-          );
-        },
+          },
+        ),
       ),
     );
   }
