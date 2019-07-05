@@ -1,3 +1,9 @@
+/*
+ * Created by YSN Studio on 7/5/19 1:36 PM
+ * Copyright (c) 2019. All right reserved.
+ * Last modified 6/29/19 12:10 PM
+ */
+
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'news_response.dart';

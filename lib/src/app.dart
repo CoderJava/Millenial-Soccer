@@ -1,3 +1,9 @@
+/*
+ * Created by YSN Studio on 7/5/19 1:36 PM
+ * Copyright (c) 2019. All right reserved.
+ * Last modified 6/29/19 10:18 AM
+ */
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:millenial_soccer/values/color_assets.dart';

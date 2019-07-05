@@ -1,3 +1,9 @@
+/*
+ * Created by YSN Studio on 7/5/19 1:36 PM
+ * Copyright (c) 2019. All right reserved.
+ * Last modified 7/4/19 3:52 PM
+ */
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {

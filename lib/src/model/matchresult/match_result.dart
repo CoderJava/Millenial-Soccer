@@ -1,3 +1,9 @@
+/*
+ * Created by YSN Studio on 7/5/19 1:36 PM
+ * Copyright (c) 2019. All right reserved.
+ * Last modified 6/29/19 7:50 PM
+ */
+
 import 'package:json_annotation/json_annotation.dart';
 part 'match_result.g.dart';
 

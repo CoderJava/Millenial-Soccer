@@ -1,3 +1,9 @@
+/*
+ * Created by YSN Studio on 7/5/19 1:36 PM
+ * Copyright (c) 2019. All right reserved.
+ * Last modified 7/5/19 11:53 AM
+ */
+
 import 'package:millenial_soccer/src/model/matchresult/match_result.dart';
 import 'package:millenial_soccer/src/model/matchresult/match_result_response.dart';
 import 'package:millenial_soccer/src/resources/sport/sport_api_repository.dart';
