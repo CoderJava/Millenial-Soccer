@@ -1,15 +1,20 @@
 import 'package:millenial_soccer/src/model/matchresult/match_result.dart';
 import 'package:millenial_soccer/src/model/matchresult/match_result_response.dart';
 import 'package:millenial_soccer/src/resources/sport/sport_api_repository.dart';
+import 'package:rxdart/rxdart.dart';
 
 class MatchBloc {
   final _sportApiRepository = SportApiRepository();
+  final _publishSubjectMatchResult = PublishSubject<List<MatchResult>>();
 
   dispose() {
-    // TODO: do something in here
+    _publishSubjectMatchResult.close();
   }
 
-  Future<List<MatchResult>> getMatchToday(String strDate) async {
+  Observable<List<MatchResult>> get matchResult => _publishSubjectMatchResult.stream;
+
+  getMatchResultByDate(String strDate) async {
+    _publishSubjectMatchResult.sink.add(null);
     List<MatchResult> listMatchResult = [];
     MatchResultResponse matchResultResponse =
         await _sportApiRepository.getMatchResultByDate(strDate);
@@ -42,6 +47,6 @@ class MatchBloc {
       listMatchResult.add(matchResult);
       counter++;
     }
-    return listMatchResult;
+    _publishSubjectMatchResult.sink.add(listMatchResult);
   }
 }
