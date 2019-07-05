@@ -3,6 +3,24 @@ part 'team_detail_response.g.dart';
 
 @JsonSerializable()
 class TeamDetailResponse {
+  @JsonKey(name: "teams")
+  List<ItemTeamDetailResponse> listTeamDetails;
+
+  TeamDetailResponse({this.listTeamDetails});
+
+  @override
+  String toString() {
+    return 'TeamDetailResponse{listTeamDetails: $listTeamDetails}';
+  }
+
+  factory TeamDetailResponse.fromJson(Map<String, dynamic> json) => _$TeamDetailResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TeamDetailResponseToJson(this);
+
+}
+
+@JsonSerializable()
+class ItemTeamDetailResponse {
   String idTeam;
   @JsonKey(name: "idSoccerXML")
   String idSoccerXml;
@@ -28,7 +46,7 @@ class TeamDetailResponse {
   String strTeamFanart4;
   String strTeamBanner;
 
-  TeamDetailResponse(
+  ItemTeamDetailResponse(
       {this.idTeam,
       this.idSoccerXml,
       this.strTeam,
@@ -54,11 +72,11 @@ class TeamDetailResponse {
 
   @override
   String toString() {
-    return 'TeamDetail{idTeam: $idTeam, idSoccerXml: $idSoccerXml, strTeam: $strTeam, intFormedYear: $intFormedYear, strLeague: $strLeague, idLeague: $idLeague, strManager: $strManager, strStadium: $strStadium, strStadiumThumb: $strStadiumThumb, strStadiumLocation: $strStadiumLocation, intStadiumCapacity: $intStadiumCapacity, strWebsite: $strWebsite, strDescription: $strDescription, strCountry: $strCountry, strTeamBadge: $strTeamBadge, strTeamJersey: $strTeamJersey, strTeamLogo: $strTeamLogo, strTeamFanart1: $strTeamFanart1, strTeamFanart2: $strTeamFanart2, strTeamFanart3: $strTeamFanart3, strTeamFanart4: $strTeamFanart4, strTeamBanner: $strTeamBanner}';
+    return 'ItemTeamDetailResponse{idTeam: $idTeam, idSoccerXml: $idSoccerXml, strTeam: $strTeam, intFormedYear: $intFormedYear, strLeague: $strLeague, idLeague: $idLeague, strManager: $strManager, strStadium: $strStadium, strStadiumThumb: $strStadiumThumb, strStadiumLocation: $strStadiumLocation, intStadiumCapacity: $intStadiumCapacity, strWebsite: $strWebsite, strDescription: $strDescription, strCountry: $strCountry, strTeamBadge: $strTeamBadge, strTeamJersey: $strTeamJersey, strTeamLogo: $strTeamLogo, strTeamFanart1: $strTeamFanart1, strTeamFanart2: $strTeamFanart2, strTeamFanart3: $strTeamFanart3, strTeamFanart4: $strTeamFanart4, strTeamBanner: $strTeamBanner}';
   }
 
-  factory TeamDetailResponse.fromJson(Map<String, dynamic> json) => _$TeamDetailResponseFromJson(json);
+  factory ItemTeamDetailResponse.fromJson(Map<String, dynamic> json) => _$ItemTeamDetailResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TeamDetailResponseToJson(this);
+  Map<String, dynamic> toJson() => _$ItemTeamDetailResponseToJson(this);
 
 }

@@ -8,6 +8,19 @@ part of 'team_detail_response.dart';
 
 TeamDetailResponse _$TeamDetailResponseFromJson(Map<String, dynamic> json) {
   return TeamDetailResponse(
+      listTeamDetails: (json['teams'] as List)
+          ?.map((e) => e == null
+              ? null
+              : ItemTeamDetailResponse.fromJson(e as Map<String, dynamic>))
+          ?.toList());
+}
+
+Map<String, dynamic> _$TeamDetailResponseToJson(TeamDetailResponse instance) =>
+    <String, dynamic>{'teams': instance.listTeamDetails};
+
+ItemTeamDetailResponse _$ItemTeamDetailResponseFromJson(
+    Map<String, dynamic> json) {
+  return ItemTeamDetailResponse(
       idTeam: json['idTeam'] as String,
       idSoccerXml: json['idSoccerXML'] as String,
       strTeam: json['strTeam'] as String,
@@ -32,7 +45,8 @@ TeamDetailResponse _$TeamDetailResponseFromJson(Map<String, dynamic> json) {
       strTeamBanner: json['strTeamBanner'] as String);
 }
 
-Map<String, dynamic> _$TeamDetailResponseToJson(TeamDetailResponse instance) =>
+Map<String, dynamic> _$ItemTeamDetailResponseToJson(
+        ItemTeamDetailResponse instance) =>
     <String, dynamic>{
       'idTeam': instance.idTeam,
       'idSoccerXML': instance.idSoccerXml,
